@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>InExTrack</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+    <section id="navigation">
+        <nav>
+            <div class="nav-wrapper light-blue darken-4">
+                <div class="container">
+                    <a href="index.html" class="brand-logo">inext</a>
+
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="tracker.html">Tracker</a></li>
+                        <li><a href="category.html">Categories</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <div class="container">
+        <h4 class="center-align">Income Expense Tracker</h4>
+        <section id="tracker-section">
+            <div class="tracker-actions right-align">
+                <div class="row">
+                    <div class="col s6">
+                        <div class="input-field">
+                            <select>
+                                <option value="" disabled selected>Choose filter option</option>
+                                <option value="income">Income</option>
+                                <option value="income">Expense</option>
+                            </select>
+                            <label for="filterOption">Filter</label>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="input-field">
+                            <i class="material-icons prefix">search</i>
+                            <input id="icon_prefix" type="text" class="validate">
+                            <label for="icon_prefix">Search</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="striped responsive-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Entry Date</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Income</td>
+                        <td>Employment</td>
+                        <td>Salary</td>
+                        <td>Salary from 1st Cut-Off of February</td>
+                        <td>31,427.89</td>
+                        <td>02-25-2019</td>
+                        <td><i class="material-icons">edit</i></td>
+                        <td><i class="material-icons">delete</i></td>
+                    </tr>
+                    <tr>
+                        <td>Expense</td>
+                        <td>Food</td>
+                        <td>Chicken Curry</td>
+                        <td>Chicken Curry bought for lunch</td>
+                        <td>45.00</td>
+                        <td>03-26-2019</td>
+                        <td><i class="material-icons">edit</i></td>
+                        <td><i class="material-icons">delete</i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="fixed-action-btn">
+            <a href="tracker-form.html" class="btn-floating light-blue new-entry-btn"><i class="material-icons">add</i></a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/tracker.js"></script>
+</body>
+</html>
