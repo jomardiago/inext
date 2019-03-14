@@ -1,4 +1,5 @@
 (function() {
+    const hashId = window.location.hash.substr(1);
     const entries = localStorage.getItem('entries') ? JSON.parse(localStorage.getItem('entries')) : [];
     const categories = localStorage.getItem('categories') ? JSON.parse(localStorage.getItem('categories')) : [];
 
@@ -42,12 +43,13 @@
     const saveNewIncomeExpense = () => {
         const newIncomeExpense = {};
 
+        newIncomeExpense.id = new Date().getTime();
         newIncomeExpense.type = document.querySelector('#type').value;
         newIncomeExpense.category = document.querySelector('#category').value;
         newIncomeExpense.name = document.querySelector('#name').value;
         newIncomeExpense.description = document.querySelector('#description').value;
         newIncomeExpense.amount = document.querySelector('#amount').value;
-        newIncomeExpense.entryDate = document.querySelector('#entryDate').value;
+        newIncomeExpense.entryDate = document.querySelector('#entryDate').value ? document.querySelector('#entryDate').value : moment().format('MMM DD, YYYY');
 
         entries.push(newIncomeExpense);
 
@@ -60,6 +62,42 @@
         document.querySelector('#entryDate').value = '';
     };
 
+    const updateIncomeExpense = () => {
+        entries.forEach(entry => {
+            if (entry.id == hashId) {
+                entry.type = document.querySelector('#type').value;
+                entry.category = document.querySelector('#category').value;
+                entry.name = document.querySelector('#name').value;
+                entry.description = document.querySelector('#description').value;
+                entry.amount = document.querySelector('#amount').value;
+                entry.entryDate = document.querySelector('#entryDate').value ? document.querySelector('#entryDate').value : moment().format('MMM DD, YYYY');
+            }
+        });
+
+        localStorage.setItem('entries', JSON.stringify(entries));
+        M.toast({html: 'Entry updated successfully.', classes: 'light-green'});
+
+        document.querySelector('#name').value = '';
+        document.querySelector('#description').value = '';
+        document.querySelector('#amount').value = '';
+        document.querySelector('#entryDate').value = '';
+    };
+
+    const populateTrackerForm = id => {
+        const entries = JSON.parse(localStorage.getItem('entries'));
+        const entry = entries.find(entry => entry.id == id);
+
+        document.querySelector('#type').value = entry.type;
+
+        populateCategorySelectList(categories);
+
+        document.querySelector('#category').value = entry.category;
+        document.querySelector('#name').value = entry.name;
+        document.querySelector('#description').value = entry.description;
+        document.querySelector('#amount').value = parseFloat(entry.amount.replace(',', ''));
+        document.querySelector('#entryDate').value = entry.entryDate;
+    };
+
     document.addEventListener('DOMContentLoaded', function() {
         const selectElems = document.querySelectorAll('select');
         const dateElems = document.querySelectorAll('.datepicker');
@@ -69,8 +107,14 @@
 
     document.querySelector('#tracker-form').addEventListener('submit', (e) => {
         e.preventDefault();
-        saveNewIncomeExpense();
+        if (hashId !== '') {
+            updateIncomeExpense();
+        } else {
+            saveNewIncomeExpense();
+        }
     });
 
     document.querySelector('#type').addEventListener('change', () => populateCategorySelectList(categories));
+
+    if (hashId !== '') { populateTrackerForm(hashId); }
 })();

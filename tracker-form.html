@@ -33,24 +33,24 @@
             <form id='tracker-form'>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="type">
+                        <select id="type" required>
                             <option value="" disabled selected>Choose Type</option>
                             <option value="Income">Income</option>
                             <option value="Expense">Expense</option>
                         </select>
-                        <label for="type">Type</label>
+                        <label for="type">*Type</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="category"></select>
-                        <label for="category">Category</label>
+                        <select id="category" required></select>
+                        <label for="category">*Category</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" class="validate" id="name" name="name" placeholder="Enter Name">
-                        <label for="name">Name</label>
+                        <input type="text" class="validate" id="name" name="name" placeholder="Enter Name" required>
+                        <label for="name">*Name</label>
                     </div>
                 </div>
                 <div class="row">
@@ -61,8 +61,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" class="validate" id="amount" name="amount" placeholder="Enter Amount">
-                        <label for="amount">Amount</label>
+                        <input type="number" class="validate" id="amount" name="amount" placeholder="Enter Amount" required>
+                        <label for="amount">*Amount</label>
                     </div>
                 </div>
                 <div class="row">
@@ -80,6 +80,7 @@
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
     <script src="js/tracker-form.js"></script>
 </body>
 </html>

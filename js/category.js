@@ -6,13 +6,13 @@
         tbodyEl.innerHTML = null;
     };
     
-    const deleteCategory = id => {
-        const newCategories = categories.filter(category => category.id !== id);
-        localStorage.setItem('categories', JSON.stringify(newCategories));
-        
+    const deleteCategory = categoryId => {
+        const index = categories.findIndex(({ id }) => id === categoryId);
+        categories.splice(index, 1);
+        localStorage.setItem('categories', JSON.stringify(categories));
         clearTBodyElement();
-        renderCategories(newCategories);
-        M.toast({html: 'Category saved successfully.', classes: 'light-green'});
+        renderCategories(categories);
+        M.toast({html: 'Categories saved successfully.', classes: 'light-green'});
     };
     
     const renderCategories = (categories) => {
